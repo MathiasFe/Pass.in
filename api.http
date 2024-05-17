@@ -1,0 +1,41 @@
+
+//Gera um novo Evento
+POST http://localhost:3333/events
+Content-Type: application/json
+
+{
+      "title":"Novo Evento",
+      "details":null,
+      "maximumAttendees":1
+}
+
+###
+//Cria um usuario novo para aquele evento em especifico
+Post http://localhost:3333/event/d4ed0bc1-06de-462f-93dc-cc5c503b5c2b/attendees
+Content-Type: application/json
+
+{
+      "name":"Felipe Mathias",
+      "email":"felipeferreria23@primecase.com.br"
+}
+
+
+###
+
+//Pega os dados do evento
+GET http://localhost:3333/events/d4ed0bc1-06de-462f-93dc-cc5c503b5c2b
+
+
+
+###
+//Gera a Badge de acesso ao evento
+GET  http://localhost:3333/attendees/2/badge
+
+
+###
+//Realiza o checkin para o evento
+GET  http://localhost:3333/attendees/3/check-in
+
+###
+GET http://localhost:3333/events/d4ed0bc1-06de-462f-93dc-cc5c503b5c2b/attendees?query=felipe
+
