@@ -3,6 +3,7 @@ import z from "zod";
 import {prisma} from "../lib/prisma"
 import { generateSlug } from "../utils/generate-slug";
 import { FastifyInstance } from "fastify";
+import { BadRequest } from "./_errors/bad-request";
 
 //usamos uma função que vai receber o app do fastify, pois não podemos instanciar uma novo app aqui
 // o fastify por padrão, todas as funções que separam nossa aplicação como rotas, precisam ser asyncronas, se não ele roda em um looping infinito
@@ -39,7 +40,7 @@ export async function createEvent(app:FastifyInstance){
             })
       
             if(eventWithSameSlug !== null)
-                  throw new Error('O evento que está tentando adicionar já existe!')
+                  throw new BadRequest('O evento que está tentando adicionar já existe!')
       
           const event =  await prisma.event.create({ //Gravando no banco de dados
                   data:{
